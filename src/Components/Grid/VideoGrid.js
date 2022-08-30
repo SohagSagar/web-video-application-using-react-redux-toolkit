@@ -6,12 +6,13 @@ import VideoGridItem from './VideoGridItem';
 
 const VideoGrid = () => {
 
-    const {videos,isLoading,isError,error}=useSelector((state)=>state.videos)
+    const {videos,isLoading,isError,error}=useSelector((state)=>state.videos);
+    const {tags,search} =useSelector(state => state.filter)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(fetchVideos())
-    },[dispatch]);
+        dispatch(fetchVideos({tags,search}))
+    },[dispatch,tags,search]);
 
     //decide what to rander
     let content;
