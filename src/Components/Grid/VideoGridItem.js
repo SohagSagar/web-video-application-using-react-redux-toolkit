@@ -2,14 +2,15 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 const VideoGridItem = ({video}) => {
-    const {thumbnail,title,duration,avatar,author,views,date} =video;
+    const {id,thumbnail,title,duration,avatar,author,views,date} =video;
+    // const videoId = useParams()
     return (
         <div
             className="col-span-12 sm:col-span-6 md:col-span-3 duration-300 hover:scale-[1.03]"
         >
             <div className="w-full flex flex-col">
                 <div className="relative">
-                    <Link to={`/video/1`} >
+                    <Link to={`/video/${id}`} >
                         <img
                             src={thumbnail}
                             className="w-full h-auto"
@@ -25,7 +26,7 @@ const VideoGridItem = ({video}) => {
                 </div>
 
                 <div className="flex flex-row mt-2 gap-2">
-                    <Link to={`/video/1`}  className="shrink-0">
+                    <Link to={`/video/${id}`}  className="shrink-0">
                         <img
                             src={avatar}
                             className="rounded-full h-6 w-6"
@@ -34,14 +35,14 @@ const VideoGridItem = ({video}) => {
                     </Link>
 
                     <div clas="flex flex-col">
-                        <Link to={`/video/1`} >
+                        <Link to={`/video/${id}`} >
                             <p
                                 className="text-slate-900 text-sm font-semibold"
                             >
                                 {title}
                             </p>
                         </Link>
-                        <Link to={`/video/1`}
+                        <Link to={`/video/${id}`}
                             className="text-gray-400 text-xs mt-2 hover:text-gray-600"
                             href="#"
                         >

@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getVideos } from './VideosAPI'
+import { getTags } from './tagsAPI';
+
 
 // initial state for video reducer
 const initialState = {
-    videos: [],
+    tags: [],
     isLoading: false,
     isError: false,
     error: ''
@@ -11,31 +12,31 @@ const initialState = {
 }
 
 // async thunk
-export const fetchVideos = createAsyncThunk('videos/fetchVideos', async () => {
-    const videos = await getVideos();
-    return videos;
+export const fetchTags = createAsyncThunk('tags/fetchTags', async () => {
+    const tags = await getTags();
+    return tags;
 })
 
-const videoSlice = createSlice({
+const tagsSlice = createSlice({
     name: 'tags',
     initialState,
     extraReducers: (builder) => {
         builder
-            .addCase(fetchVideos.pending, (state) => {
+            .addCase(fetchTags.pending, (state) => {
                 state.isError = false;
                 state.isLoading = true;
             })
-            .addCase(fetchVideos.fulfilled, (state, action) => {
+            .addCase(fetchTags.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.videos = action.payload;
+                state.tags = action.payload;
             })
-            .addCase(fetchVideos.rejected, (state, action) => {
+            .addCase(fetchTags.rejected, (state, action) => {
                 state.isLoading = false;
-                state.videos = [];
+                state.tags = [];
                 state.isError = true;
                 state.error = action.error?.message;
             })
     }
 })
 
-export default videoSlice.reducer;
+export default tagsSlice.reducer;

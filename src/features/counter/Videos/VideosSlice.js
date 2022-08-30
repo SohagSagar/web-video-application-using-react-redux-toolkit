@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getVideos } from './VideosAPI'
 
-// initial state for video reducer
 const initialState = {
     videos: [],
     isLoading: false,
@@ -31,11 +30,11 @@ const videoSlice = createSlice({
             })
             .addCase(fetchVideos.rejected, (state, action) => {
                 state.isLoading = false;
-                state.videos = [];
                 state.isError = true;
                 state.error = action.error?.message;
+                state.videos = [];
             })
     }
 })
 
-export default videoSlice.reducer;
+export default videoSlice;
