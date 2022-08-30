@@ -10,7 +10,6 @@ const Tags = () => {
 
     const dispatch = useDispatch();
     const { tags, isLoading, isError, error } = useSelector((state => state.tags));
-    console.log(tags);
 
     useEffect(() => {
         dispatch(fetchTags())
@@ -22,7 +21,7 @@ const Tags = () => {
     if(!isLoading && isError) content = <div className="col-span-12">{error}</div>
     if(!isLoading && !isError && tags?.length===0 ) content = false;
     if(!isLoading && !isError && tags?.length>0) {
-        content = tags.map(tag=> <Tag  key={tag.id} tag={tag}/>)
+        content = tags.map(tag=> <Tag  key={tag.id} title={tag.title}/>)
     }
 
 

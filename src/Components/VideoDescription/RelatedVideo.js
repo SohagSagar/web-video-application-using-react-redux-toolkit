@@ -1,43 +1,43 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const RelatedVideo = () => {
+const RelatedVideo = ({ relatedVideo }) => {
+    const { id, thumbnail, title, author, duration, views, date } = relatedVideo;
     return (
         <div className="w-full flex flex-row gap-2 mb-4">
             <div
                 className="relative w-[168px] h-[94px] flex-none duration-300 hover:scale-[1.03]"
             >
-                <Link to={`/video/1`} >
+                <Link to={`/video/${id}`} >
                     <img
-                        src="https://i3.ytimg.com/vi/6O4s7v28nlw/maxresdefault.jpg"
+                        src={thumbnail}
                         className="object-cover"
-                        alt="Some video title"
+                        alt={title}
                     />
                 </Link>
                 <p
                     className="absolute right-2 bottom-2 bg-gray-900 text-gray-100 text-xs px-1 py"
                 >
-                    12:10
+                    {duration}
                 </p>
             </div>
 
             <div className="flex flex-col w-full">
-                <Link to={`/video/1`}>
+                <Link to={`/video/${id}`}>
                     <p
                         className="text-slate-900 text-sm font-semibold"
                     >
-                        Some video title
+                        {title}
                     </p>
                 </Link>
-                <Link to={`/video/1`}
+                <Link to={`/video/${id}`}
                     className="text-gray-400 text-xs mt-2 hover:text-gray-600"
-                   
+
                 >
-                    Learn with Sumit
+                    {author}
                 </Link>
                 <p className="text-gray-400 text-xs mt-1">
-                    100K views . 23 Oct 2022
-                </p>
+                    {views} views . {date}</p>
             </div>
         </div>
     );
