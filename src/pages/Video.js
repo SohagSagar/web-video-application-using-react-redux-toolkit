@@ -13,8 +13,9 @@ const Video = () => {
 
     const dispatch = useDispatch();
     const { video, isLoading, isError, error } = useSelector((state) => state.video);
-    const {author} = useSelector(state=>state.filter)
 
+    const { author } = useSelector(state => state.filter);
+    const { likes } = useSelector((state) => state.likes);
     useEffect(() => {
         dispatch(fetchVideo(id))
     }, [dispatch, id]);
@@ -33,13 +34,13 @@ const Video = () => {
 
                 <div className="col-span-full w-full space-y-8 lg:col-span-2">
                     {/* <!-- video player --> */}
-                    <Player title={video.title} link ={video.link}/>
+                    <Player title={video.title} link={video.link} />
                     {/* <!-- video description --> */}
                     <VideoDescription video={video} />
                 </div>
 
                 {/* <!-- related videos --> */}
-                <RelatedVideos tags={video?.tags} id={video.id} author={author}/>
+                <RelatedVideos tags={video?.tags} id={video.id} author={author} />
 
             </div>
     }

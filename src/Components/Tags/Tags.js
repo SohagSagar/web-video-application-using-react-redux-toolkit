@@ -11,14 +11,14 @@ const Tags = () => {
 
     const dispatch = useDispatch();
     const { tags, isLoading, isError, error } = useSelector((state => state.tags));
+    const { tags: filterTags, search, author } = useSelector((state => state.filter));
+
 
     useEffect(() => {
         dispatch(fetchTags())
     }, [dispatch]);
 
-    const handleClearFilter = () =>{
-        console.log('object');
-        // const reset= resetFilter
+    const handleClearFilter = () => {
         dispatch(resetFilter())
     }
 
@@ -36,9 +36,12 @@ const Tags = () => {
 
         <section>
             <div className="max-w-7xl mx-auto px-5 py-6 lg:px-0 flex gap-2 justify-between border-b overflow-y-auto ">
-                
-                    <div className='flex gap-2'>{content}</div>
-                    <div onClick={()=>handleClearFilter()}><button className='bg-red-400 text-white px-4 py-1 rounded-full cursor-pointer'><img className='inline w-4 ' src='https://img.icons8.com/material-rounded/24/000000/filter.png' alt=''></img> Clear all filters</button></div> 
+
+                <div className='flex gap-2'>{content}</div>
+                {
+                    
+                    <div onClick={() => handleClearFilter()}><button className='bg-red-400 text-white px-4 py-1 rounded-full cursor-pointer'><img className='inline w-4 ' src='https://img.icons8.com/material-rounded/24/000000/filter.png' alt=''></img> Clear all filters</button></div>
+                }
 
 
             </div>

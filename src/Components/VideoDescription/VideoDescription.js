@@ -2,7 +2,8 @@ import React from 'react';
 import LikeUnlike from './LikeUnlike';
 
 const VideoDescription = ({video}) => {
-    const {description,title,date} =video;
+    const {id,description,title,date,likes,unlikes} =video;
+
     return (
         <div>
             <h1
@@ -20,7 +21,7 @@ const VideoDescription = ({video}) => {
                 </h2>
 
                 {/* <!-- like/unlike --> */}
-                <LikeUnlike />
+                <LikeUnlike likes={likes} unlikes={unlikes} id={id}/>
             </div>
 
             <div

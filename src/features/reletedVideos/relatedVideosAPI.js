@@ -15,7 +15,6 @@ export const getRelatedVideos = async ({tags,id,author}) => {
 
     //  
 
-    console.log(queryString);
     // console.log('object',tags);
     
 

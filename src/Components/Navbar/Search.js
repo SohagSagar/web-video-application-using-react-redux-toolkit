@@ -8,7 +8,6 @@ const Search = () => {
     const disPatch = useDispatch()
     const { search } = useSelector((state) => state.filter)
     const [input, setInput] = useState(search);
-    console.log('object',search);
 
 
     function debounce(fn, delay) {
