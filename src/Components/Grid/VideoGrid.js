@@ -12,7 +12,7 @@ const VideoGrid = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchVideos({ tags, search }))
+        dispatch(fetchVideos({ tags, search}))
     }, [dispatch, tags, search]);
 
     // data for pagination
@@ -55,11 +55,11 @@ const VideoGrid = () => {
 
                 {
                     videos?.length > 0 &&
-                    <div class=" flex  justify-center">
+                    <div className=" flex  justify-center">
                         <div className='flex justify center item-center '>
-                            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage < 2} class="btn"><span className='text-2xl'>«</span></button>
-                            <button class="btn font-semibold mt-2 px-3">Page {currentPage}/{totalPage}</button>
-                            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPage} class="btn"><span className='text-2xl'>»</span></button>
+                            <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage < 2} className="btn"><span className='text-2xl'>«</span></button>
+                            <button className="btn font-semibold mt-2 px-3">Page {currentPage}/{totalPage}</button>
+                            <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPage} className="btn"><span className='text-2xl'>»</span></button>
                         </div>
                     </div>
                 }

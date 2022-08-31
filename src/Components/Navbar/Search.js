@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { searched } from '../../features/filter/filterSlice'
 
 const Search = () => {
+    const navigate = useNavigate()
     const disPatch = useDispatch()
     const { search } = useSelector((state) => state.filter)
     const [input, setInput] = useState(search);
+    console.log('object',search);
 
 
     function debounce(fn, delay) {
@@ -20,9 +23,19 @@ const Search = () => {
     // usage
     function searchedText() {
         disPatch(searched(input))
+        // navigate('/');
     };
 
-    debounce(searchedText, 1000);
+    useEffect(() => {
+        debounce(searchedText, 1000);
+        // setInput(search)
+    }, [input])
+
+    useEffect(()=>{
+        if(!search) setInput('')
+    },[search])
+
+
 
 
 

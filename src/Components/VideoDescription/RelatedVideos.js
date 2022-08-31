@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchRelatedVideos } from '../../features/reletedVideos/relatedVideosSlice';
 import Loading from '../Ui/Loading';
 
-const RelatedVideos = ({ tags, id }) => {
+const RelatedVideos = ({ tags, id,author }) => {
 
     const { relatedVideos, isLoading, isError, error } = useSelector((state) => state.relatedVideos)
 
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchRelatedVideos({ tags, id }))
-    }, [dispatch, tags, id])
+        dispatch(fetchRelatedVideos({ tags, id ,author}))
+    }, [dispatch, tags, id,author])
 
     //decide what to do
     let content;

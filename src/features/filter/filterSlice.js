@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 // initial state for video reducer
 const initialState = {
     tags: [],
-    search: ''
+    search: '',
+    author:''
 }
 
 
@@ -22,11 +23,20 @@ const filterSlice = createSlice({
         },
         searched: (state, action) => {
             state.search = action.payload
-        }
+        },
+        searchedByAuthor:(state, action) =>{
+            state.author = action.payload
+        },
+        resetFilter:(state, action) =>{
+            state.tags=[];
+            state.search=''
+            state.author =''
+        },
+
     }
 
 
 })
 
 export default filterSlice.reducer;
-export const { tagSelected, tagRemoved, searched } = filterSlice.actions;
+export const { tagSelected, tagRemoved, searched,searchedByAuthor,resetFilter } = filterSlice.actions;

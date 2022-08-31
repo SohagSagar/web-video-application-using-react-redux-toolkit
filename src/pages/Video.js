@@ -13,6 +13,7 @@ const Video = () => {
 
     const dispatch = useDispatch();
     const { video, isLoading, isError, error } = useSelector((state) => state.video);
+    const {author} = useSelector(state=>state.filter)
 
     useEffect(() => {
         dispatch(fetchVideo(id))
@@ -38,7 +39,7 @@ const Video = () => {
                 </div>
 
                 {/* <!-- related videos --> */}
-                <RelatedVideos tags={video?.tags} id={video.id}/>
+                <RelatedVideos tags={video?.tags} id={video.id} author={author}/>
 
             </div>
     }

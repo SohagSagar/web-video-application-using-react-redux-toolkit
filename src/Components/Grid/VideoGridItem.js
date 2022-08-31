@@ -1,14 +1,31 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVideos } from '../../features/Videos/VideosSlice';
+import { searchedByAuthor } from '../../features/filter/filterSlice';
 
-const VideoGridItem = ({video}) => {
-    const {id,thumbnail,title,duration,avatar,author,views,date} =video;
-    // const videoId = useParams()
+const VideoGridItem = ({ video }) => {
+    const { id, thumbnail, title, duration, avatar, author: authorName, views, date } = video;
+
+    const { tags, search } = useSelector(state => state.filter)
+    const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     dispatch(fetchVideos({ tags, search}))
+    // }, [dispatch, tags, search]);
+
+    const handleFilterByAuthor = (authorName) => {
+        dispatch(searchedByAuthor(authorName))
+    }
+    const handleFilterByVideoCard = (emptystring) =>{
+        // dispatch(searchedByAuthor(emptystring))
+        // console.log('video card',emptystring);
+    }
     return (
         <div
             className="col-span-12 sm:col-span-6 md:col-span-3 duration-300 hover:scale-[1.03]"
         >
-            <div className="w-full flex flex-col">
+            <div  onClick={()=>handleFilterByVideoCard()} className="w-full flex flex-col">
                 <div className="relative">
                     <Link to={`/video/${id}`} >
                         <img
@@ -26,11 +43,11 @@ const VideoGridItem = ({video}) => {
                 </div>
 
                 <div className="flex flex-row mt-2 gap-2">
-                    <Link to={`/video/${id}`}  className="shrink-0">
+                    <Link to={`/video/${id}`} className="shrink-0">
                         <img
                             src={avatar}
                             className="rounded-full h-6 w-6"
-                            alt={author}
+                            alt={authorName}
                         />
                     </Link>
 
@@ -42,11 +59,11 @@ const VideoGridItem = ({video}) => {
                                 {title}
                             </p>
                         </Link>
-                        <Link to={`/video/${id}`}
+                        <Link onClick={()=> handleFilterByAuthor(authorName)} to={`/video/${id}`}
                             className="text-gray-400 text-xs mt-2 hover:text-gray-600"
                             href="#"
                         >
-                            {author}
+                            {authorName}
                         </Link>
                         <p className="text-gray-400 text-xs mt-1">
                             {views} views . {date}
