@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTags } from '../../features/tags/tagsSlice';
 import Loading from '../Ui/Loading';
 import Tag from './Tag';
-import { tagSelected, tagRemoved, resetFilter } from '../../features/filter/filterSlice'
-
+import { resetFilter } from '../../features/filter/filterSlice';
 
 
 const Tags = () => {
@@ -12,6 +11,8 @@ const Tags = () => {
     const dispatch = useDispatch();
     const { tags, isLoading, isError, error } = useSelector((state => state.tags));
     const { tags: filterTags, search, author } = useSelector((state => state.filter));
+
+    console.log(filterTags, search, author);
 
 
     useEffect(() => {
@@ -39,8 +40,8 @@ const Tags = () => {
 
                 <div className='flex gap-2'>{content}</div>
                 {
-                    
-                    <div onClick={() => handleClearFilter()}><button className='bg-red-400 text-white px-4 py-1 rounded-full cursor-pointer'><img className='inline w-4 ' src='https://img.icons8.com/material-rounded/24/000000/filter.png' alt=''></img> Clear all filters</button></div>
+                    filterTags.length > 0 | search !== "" | author !== "" ?
+                    <div onClick={() => handleClearFilter()}><button className='bg-red-400 text-white px-4 py-1 rounded-full cursor-pointer'><img className='inline w-4 ' src='https://img.icons8.com/material-rounded/24/000000/filter.png' alt=''></img> Clear all filters</button></div> : ''
                 }
 
 
