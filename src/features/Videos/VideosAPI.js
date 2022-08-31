@@ -8,5 +8,7 @@ export const getVideos = async ({ tags, search }) => {
     const response = await axiosInstance.get(`/videos?${queryString}`);
     return response.data;
 
+    // &_page=1&_limit=4
+
 }
 
