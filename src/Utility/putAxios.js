@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPut = axios.create({
-    baseURL: 'http://localhost:9000',
+    baseURL: 'https://react-redux-json-server.herokuapp.com',
     method:'put'
 
   });
